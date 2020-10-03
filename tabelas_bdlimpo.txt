@@ -1,0 +1,45 @@
+ CREATE DATABASE IF NOT EXISTS projeto_limpo;
+ 
+ USE projeto_limpo;
+ 
+ CREATE TABLE Cliente(
+     id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL  DEFAULT ' ',
+    cpf INT(11) NOT NULL  DEFAULT 0, 
+	id_endereco INT(11),
+   FOREIGN KEY (id_endereco) REFERENCES Endereço(id)
+   );
+
+CREATE TABLE Endereço(
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    estado VARCHAR(50) NOT NULL  DEFAULT ' ',
+    cep INT(11) NOT NULL  DEFAULT 0,
+	cidade VARCHAR(50) NOT NULL  DEFAULT ' ',
+	rua VARCHAR(50) NOT NULL  DEFAULT ' ',
+	numero INT(11) NOT NULL  DEFAULT 0
+	);
+	
+CREATE TABLE Produto(
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL  DEFAULT ' ',
+    quantidade INT(11) NOT NULL  DEFAULT 0,
+	valor INT(11) NOT NULL  DEFAULT 0);  
+
+CREATE TABLE Serviço(
+    id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    descricao VARCHAR(50) NOT NULL  DEFAULT ' ',
+	valor INT(11) NOT NULL  DEFAULT 0, 
+	id_produto INT(11),
+	id_cliente INT(11),
+	FOREIGN KEY (id_produto) REFERENCES Produto(id),
+	FOREIGN KEY (id_cliente) REFERENCES Cliente(id)
+	);
+
+Selicionando nome  estado do cliente com objtivo de ver o endereço do mesmo(origem), as tabelas cliente e endereço foram juntas pela comando join:
+select Cliente.nome, Endereço.estado from Cliente join Endereço on Endereço.id = Cliente.id_endereco;
+
+ 
+   
+ 
+   
+	

@@ -1,0 +1,18 @@
+Levantamento de Requesitos
+
+
+Requesitos:
+	Cadastrar,      
+	Consultar,
+	Editar
+	Excluir
+	
+	
+Menus:
+	Cliente, Peça, Aparelho, Serviço, Relatório, Sobre
+	
+
+Relatórios:
+	Peça mais utilizadas, Aparelho masi utilizados, Serviço mais utilizados, estoque
+	
+
