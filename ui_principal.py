@@ -4,6 +4,7 @@ from tkinter import ttk
 from ui_cadastro import *
 from ui_consulta import *
 from backend_edita import *
+from backend_relatorio import *
 from ui_endereco import *
 from ui_produto import *
 from ui_servico import *
@@ -44,16 +45,11 @@ class janela_principal():
       self.menu.add_cascade(label = 'Serviço', menu = self.menu_servico)
 
       self.menu_relatorios = Menu(self.menu)
-      self.menu_relatorios.add_command(label = 'Lucro')
-      self.menu_relatorios.add_command(label = 'Clientes')
-      self.menu_relatorios.add_command(label = 'Peças')
-      self.menu_relatorios.add_command(label = 'Serviços')
-      self.menu_relatorios.add_command(label = 'Aparelhos')
+      self.menu_relatorios.add_command(label = 'Lucro', command = self.relatorio_Lucro)
+      self.menu_relatorios.add_command(label = 'Peças', command = self.relatorio_Peca)
+      self.menu_relatorios.add_command(label = 'Serviços', command = self.relatorio_Servico)
+      self.menu_relatorios.add_command(label = 'Aparelhos', command = self.relatorio_Aparelho)
       self.menu.add_cascade(label = 'Relatórios', menu = self.menu_relatorios)
-
-      self.menu_sobre = Menu(self.menu)
-      self.menu_sobre.add_command(label = 'Sobre', command = '')
-      self.menu.add_cascade(label = 'Sobre', menu = self.menu_sobre)
 
       master.config(menu = self.menu)
 
@@ -117,8 +113,8 @@ class janela_principal():
       lista = []
       lista.append(0)
       lista.append('aparelho')
-      executando_cadastro = janela_cadastro()
-      executando_cadastro.cadastrar_nome_codigo(lista)
+      executando_cadastro = janela_cadastro(lista)
+      executando_cadastro.cadastrar_nome_codigo()
 
    def consulta_Aparelho(self):
       lista = []
@@ -169,6 +165,21 @@ class janela_principal():
       executando_exclusao = janela_consulta(lista)
       executando_exclusao.janela_consultar()
 
+   def relatorio_Lucro(self):
+      executando_relatorio = Relatorio()
+      executando_relatorio.Lucro()
+
+   def relatorio_Peca(self):
+      executando_relatorio = Relatorio()
+      executando_relatorio.Produto('PEÇA')
+
+   def relatorio_Aparelho(self):
+      executando_relatorio = Relatorio()
+      executando_relatorio.Produto('APARELHO')
+
+   def relatorio_Servico(self):
+      executando_relatorio = Relatorio()
+      executando_relatorio.Servico()
 
 root = Tk()
 root.geometry('600x400')
